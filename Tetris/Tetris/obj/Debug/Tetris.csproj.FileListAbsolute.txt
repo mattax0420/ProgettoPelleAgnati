@@ -1,0 +1,16 @@
+C:\Users\matti\OneDrive\Desktop\SKUOLA\TECNOLOGIE E PROGETTAZIONE\Laboratorio\QUINTA\Tetris\Tetris\obj\Debug\Tetris.csproj.AssemblyReference.cache
+C:\Users\matti\OneDrive\Desktop\SKUOLA\TECNOLOGIE E PROGETTAZIONE\Laboratorio\QUINTA\Tetris\Tetris\obj\Debug\Tetris.csproj.SuggestedBindingRedirects.cache
+C:\Users\matti\OneDrive\Desktop\SKUOLA\TECNOLOGIE E PROGETTAZIONE\Laboratorio\QUINTA\Tetris\Tetris\obj\Debug\MainWindow.g.cs
+C:\Users\matti\OneDrive\Desktop\SKUOLA\TECNOLOGIE E PROGETTAZIONE\Laboratorio\QUINTA\Tetris\Tetris\obj\Debug\App.g.cs
+C:\Users\matti\OneDrive\Desktop\SKUOLA\TECNOLOGIE E PROGETTAZIONE\Laboratorio\QUINTA\Tetris\Tetris\obj\Debug\Tetris_MarkupCompile.cache
+C:\Users\matti\OneDrive\Desktop\SKUOLA\TECNOLOGIE E PROGETTAZIONE\Laboratorio\QUINTA\Tetris\Tetris\obj\Debug\Tetris_MarkupCompile.lref
+C:\Users\matti\OneDrive\Desktop\SKUOLA\TECNOLOGIE E PROGETTAZIONE\Laboratorio\QUINTA\Tetris\Tetris\bin\Debug\Tetris.exe.config
+C:\Users\matti\OneDrive\Desktop\SKUOLA\TECNOLOGIE E PROGETTAZIONE\Laboratorio\QUINTA\Tetris\Tetris\bin\Debug\Tetris.exe
+C:\Users\matti\OneDrive\Desktop\SKUOLA\TECNOLOGIE E PROGETTAZIONE\Laboratorio\QUINTA\Tetris\Tetris\bin\Debug\Tetris.pdb
+C:\Users\matti\OneDrive\Desktop\SKUOLA\TECNOLOGIE E PROGETTAZIONE\Laboratorio\QUINTA\Tetris\Tetris\obj\Debug\MainWindow.baml
+C:\Users\matti\OneDrive\Desktop\SKUOLA\TECNOLOGIE E PROGETTAZIONE\Laboratorio\QUINTA\Tetris\Tetris\obj\Debug\Tetris.g.resources
+C:\Users\matti\OneDrive\Desktop\SKUOLA\TECNOLOGIE E PROGETTAZIONE\Laboratorio\QUINTA\Tetris\Tetris\obj\Debug\Tetris.Properties.Resources.resources
+C:\Users\matti\OneDrive\Desktop\SKUOLA\TECNOLOGIE E PROGETTAZIONE\Laboratorio\QUINTA\Tetris\Tetris\obj\Debug\Tetris.csproj.GenerateResource.cache
+C:\Users\matti\OneDrive\Desktop\SKUOLA\TECNOLOGIE E PROGETTAZIONE\Laboratorio\QUINTA\Tetris\Tetris\obj\Debug\Tetris.csproj.CoreCompileInputs.cache
+C:\Users\matti\OneDrive\Desktop\SKUOLA\TECNOLOGIE E PROGETTAZIONE\Laboratorio\QUINTA\Tetris\Tetris\obj\Debug\Tetris.exe
+C:\Users\matti\OneDrive\Desktop\SKUOLA\TECNOLOGIE E PROGETTAZIONE\Laboratorio\QUINTA\Tetris\Tetris\obj\Debug\Tetris.pdb
