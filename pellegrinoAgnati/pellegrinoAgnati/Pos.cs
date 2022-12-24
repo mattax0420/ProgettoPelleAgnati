@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace pellegrinoAgnati
 {
-    public class Pos
+    public class Pos //classe per il posizionamento dei blocchetti che costituiscono la forma
     {
         public int Riga { get; set; }
         public int Colonna { get; set; }

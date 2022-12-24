@@ -20,7 +20,7 @@ namespace pellegrinoAgnati
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly ImageSource[] quadratini = new ImageSource[]
+        private readonly ImageSource[] quadratini = new ImageSource[]  //singola piastra che compone il blocco complessivo
         {
             new BitmapImage(new Uri("Assets/TileRed.png",UriKind.Relative))
         };

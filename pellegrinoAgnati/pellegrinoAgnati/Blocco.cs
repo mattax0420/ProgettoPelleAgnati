@@ -29,22 +29,22 @@ namespace pellegrinoAgnati
 
         public void RotazioneSinistra()
         {
-            StatoRotazione = (StatoRotazione + 1) % Blocchetto.Length;
+            StatoRotazione = (StatoRotazione + 1) % Blocchetto.Length; //metodo per la rotazione a sinistra
         }
         public void RotazioneDestra()
         {
             if(StatoRotazione == 0)
-                StatoRotazione=Blocchetto.Length-1;
+                StatoRotazione=Blocchetto.Length-1; //metodo per la rotazione a destra
             else
                 StatoRotazione--;
         }
-        public void Movimento(int rig,int colon)
+        public void Movimento(int rig,int colon) //metodo per lo spostamento verso destra e sinistra
         {
             offset.Riga += rig;
             offset.Colonna += colon;
         }
 
-        public void ResetBlocco()
+        public void ResetBlocco()    //reset del blocco nel punto di partenza e con la rotazione iniziale
         {
             StatoRotazione = 0;
             offset.Riga = InizioOffset.Riga;
