@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "TlJDrYy57dyHjYiwDxlewr48inEA/mPOG4P2Past4v7Vt1JiDOTFaw0BWFU8NphTJYDgpdnkq71PP654h85hpQ==",
+  "dgSpecHash": "6d+CDwz3Y53EMpPrVtVTBLiWvyg+ZgU2cki0sA6jHP5CftC7R1BHuu6C84E3cSDaep7kfJhmbiagtR85n2T5yA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\matti\\OneDrive\\Documenti\\GitHub\\ProgettoPelleAgnati\\pellegrinoAgnati\\pellegrinoAgnati\\pellegrinoAgnati.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Pelle\\Documents\\GitHub\\ProgettoPelleAgnati\\pellegrinoAgnati\\pellegrinoAgnati\\pellegrinoAgnati.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Pelle\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512",
+    "C:\\Users\\Pelle\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\Pelle\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\Pelle\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

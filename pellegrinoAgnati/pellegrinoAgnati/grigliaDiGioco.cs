@@ -8,27 +8,95 @@ namespace pellegrinoAgnati
 {
     internal class grigliaDiGioco
     {
-        private int[,] grid;  //metto la virgola nelle quadre per non avere la grid vuota inizialmente perchè provocherebbe errori
-        public int Righe { get; set; }
-        public int Colonne { get; set; }
+        /*
+         la griglia è un array bidimensionale , ci salvo la posizione dei blocchi solo una volta incastrati , durante la caduta non ne tengo traccia ,
+         
+         */
+        private int[,] grid;        // 0--> cella vuota , poi un numero per ogni colore dei blocchi (spazi occupati da un blocco rosso avranno un numero(es 3 ) spazi occupati da un blocco azzurro es.2)
 
-        public int this[int r,int c]
+
+        public int NRighe { get; set; }
+        public int NColonne { get; set; }
+
+
+        public grigliaDiGioco() 
         {
-            get => grid[r, c];
-            set => grid[r,c] = value;
+            NRighe = 20;
+            NColonne = 10;
+        }
+        public grigliaDiGioco(int NRighe, int NColonne) // potrei giocare a una versione con una griglia di dimensioni diverse
+        {
+            this.NRighe = NRighe;
+            this.NColonne = NColonne;
+            grid = new int[NRighe, NColonne];
         }
 
-        //costruttore
-        public grigliaDiGioco(int righe,int colonne)
+        //vedo se una cella è vuota o occupata
+        public bool isEmpty(int r, int c)
         {
-            Righe = righe;
-            Colonne = colonne;
-            grid = new int[righe, colonne]; //creo una griglia con i parametri passati nel costruttore
+            return grid[r, c] == 0;
         }
 
-        public bool controlloDentroGriglia(int r,int c)
+
+
+
+
+        /*CRITERIO CANCELLAZIONE DELLE RIGHE
+         * 
+         uso un contatore per tenere traccia delle righe che ho cancellato , quando cade un blocco controllo dal basso verso l alto se la riga è piena, 
+        se è piena la cancello , e la riga sopra , anche se non piena dovrà "cadere" di n riga , e così via dovranno scalare tutte le righe di -n , dove n è 
+         il valore assunto dal contatore(n di righe cancellate e che devo scalare)
+         
+         */
+        public int getNRowCancellate()
         {
-            return r >= 0 && r < Righe && c >= 0 && c < Colonne; //controllo se le righe e le colonne sono all'interno della griglia
+            int cancellate = 0;
+            for (int r = NRighe - 1; r >= 0; r--)        //dal basso verso l'alto
+            {
+                if (isFull(r))
+                {
+                    deleteRow(r);
+                    cancellate++;
+                }
+                else if (cancellate > 0)
+                    abbassaRow(r, cancellate);
+            }
+
+            return cancellate;
+        }
+        //1 -> controllo se riga piena 
+        public bool isFull(int r)
+        {
+            bool ret = true;
+            for (int c = 0; c < NColonne; c++)
+                if (grid[r, c] == 0)
+                    ret = false;
+            return ret;
+        }
+        //2->analogamente per lo stesso motivo controllo se è vuota 
+        public bool isRowEmpty(int r)
+        {
+            bool ret = true;
+            for (int c = 0; c < NColonne; c++)
+                if (grid[r, c] != 0)
+                    ret = false;
+            return ret;
+        }
+        //3-> cancello ua riga quando sarà piena
+        public void deleteRow(int r)
+        {
+            for (int c = 0; c < NColonne; c++)
+                grid[r, c] = 0;
+
+        }
+        //4->sposto la riga in basso 
+        public void abbassaRow(int r, int quanto)
+        {
+            for (int c = 0; c < NColonne; c++)
+            {
+                grid[r + quanto, c] = grid[r, c];
+                grid[r, c] = 0;
+            }
         }
 
     }
