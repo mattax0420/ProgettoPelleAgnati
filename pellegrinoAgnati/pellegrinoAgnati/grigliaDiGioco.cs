@@ -38,9 +38,6 @@ namespace pellegrinoAgnati
         }
 
 
-
-
-
         /*CRITERIO CANCELLAZIONE DELLE RIGHE
          * 
          uso un contatore per tenere traccia delle righe che ho cancellato , quando cade un blocco controllo dal basso verso l alto se la riga è piena, 

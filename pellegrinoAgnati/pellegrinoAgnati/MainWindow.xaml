@@ -5,69 +5,87 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pellegrinoAgnati"
         mc:Ignorable="d"
-        Title="MainWindow" Height="470" Width="800"
-        
+        Title="MainWindow" Height="600" Width="800"
         KeyDown="window_keyDown">
-    <Grid Name="grid" Margin="0,0,0,1">
-        <!-- griglia tutto lo schermo -->
-        <!-- sfondo-->
+    <!-- quando schiaccio un tasto sulla wind-->
+    <!-- tutta la win ,uso la grid come layout non come grid di gioco -->
+    <!-- 3 colonne ->  0 = sinistra della finestra , 1 = centro 2 = destra -->
+    <!-- 2 righe  -> 0 riga in alto per intestazione , 2 = tutta la pagina (tutto il resto dello spazio) -->
+    <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Assets/sfondo.png"/>
         </Grid.Background>
-        <!-- UI col canvas-->
-        <Viewbox Grid.Row="1"
-                 Grid.Column="1"
-                 Margin="0,0,0,20">
-            <Canvas x:Name="UI"
-                
-                Width="250"
-                Height="470"
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <!-- canvas per griglia di gioco, piu comodo della versione precedente con n righe e colonne per ogni quadratino della tabella di gioco-->
+        <Canvas x:Name="grigliaGioco"
+                Grid.Row="1"
+                Grid.Column="1"
+                Background="Black"
+                Width="250" Height="500"
                 ClipToBounds="True" 
                 Loaded="GameCanvas_Loaded"/>
-        </Viewbox>
+        <!--ClipToBounds= per le righe nascoste(che servono per cancellazione dellerighe quando sono piene), nasconde quello che "esce" dal canvas-->
 
-        <!-- griglia di gioco -->
-        <Grid x:Name="gameGrid" Margin="26,18,0,0" Height="470" Width="243" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Black">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="25"/>
+        <TextBlock x:Name="Score" 
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   Text="Punti:"
+                   Foreground="White"
+                   Margin="0,10,0,10"
+                   TextAlignment="Center"/>
 
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="25"/>
-                <ColumnDefinition Width="25"/>
-                <ColumnDefinition Width="25"/>
-                <ColumnDefinition Width="25"/>
-                <ColumnDefinition Width="25"/>
-                <ColumnDefinition Width="25"/>
-                <ColumnDefinition Width="25"/>
-                <ColumnDefinition Width="25"/>
-                <ColumnDefinition Width="25"/>
-                <ColumnDefinition Width="25"/>
-                <ColumnDefinition Width="25"/>
-            </Grid.ColumnDefinitions>
+        <!-- imagebox per far vedere il prossimo blocco in arrivo-->
+        <!-- Stackpanel impila gli elementi uno sull altro senza coprirli-->
+        <StackPanel Grid.Row="1"
+                    Grid.Column="2"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left">
+            <TextBlock Text="Next"
+                       Foreground="White"
+                               TextAlignment="Center"/>
+            <Image x:Name="prossima"
+                           Width="125"/>
+        </StackPanel>
+
+
+        <!-- menu di gameover invisibile-->
+        <Grid x:Name="gameOverMenu"
+              Visibility="Hidden"
+              Background="#CC000000"
+              Grid.RowSpan="2"
+              Grid.ColumnSpan="3"
+              >
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center" Height="250" Width="332">
+                <TextBlock Text="GameOver"
+                           Foreground="White"
+                           FontSize="40"
+                           TextAlignment="Center"/>
+                <TextBlock Text="FinalScore: "
+                           Foreground="White"
+                           FontSize="20"
+                           TextAlignment="Left"/>
+                <Button Content="Gioca ancora"
+                        Background="Green"
+                        Click="Button_Click_2"/>
+            </StackPanel>
         </Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="340,204,0,0" TextWrapping="Wrap" Text="blocco corrente" VerticalAlignment="Top" Height="37" Width="103"/>
-        <TextBlock HorizontalAlignment="Center" Margin="0,18,0,0" TextWrapping="Wrap" Text=" in arrivo" VerticalAlignment="Top" Height="37" Width="120"/>
-        <Canvas Grid.RowSpan="2">
-            <Image x:Name="imgBlockCorrente" Height="100" Canvas.Left="340" Canvas.Top="259" Width="100"/>
-        </Canvas>
-        <Image x:Name="imgBlockNext" HorizontalAlignment="Left" Height="100" Margin="340,65,0,0" VerticalAlignment="Top" Width="100"/>
-
     </Grid>
+
+
+
+
 
 </Window>
