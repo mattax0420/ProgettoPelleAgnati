@@ -43,11 +43,38 @@ namespace pellegrinoAgnati
             new BitmapImage(new Uri("Assets/Block-T.png",UriKind.Relative)),
             new BitmapImage(new Uri("Assets/Block-Z.png",UriKind.Relative))
         };
+
+                                    //singole celle della grid, una immagine in ogni cella 
+        private Image[,] celle;     //20 righe 10 colonne come griglia di gioco
+
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        private Image[,] SetUpCanvas(grigliaDiGioco grid)
+        {
+            Image[,] celle = new Image[grid.NRighe, grid.NColonne];
+            int cellSize = 25;  //in base a width e heigth del canvas
+
+            /*looppo la tabella e disegno le celle */
+            for (int r = 0; r < grid.NRighe; r++)
+            {
+                for (int c = 0; c < grid.NColonne; c++)
+                {                                                                                     //NO Image cella = new Image(cellSize,cellSize);
+                    Image cella = new Image
+                    {       //setto le prop
+                        Width = cellSize,
+                        Height = cellSize,
+                    };
+                    Canvas.SetTop(cella, cellSize);
+                    Canvas.SetLeft(cella, cellSize);
+                    //celle = this.celle
+                }
+            }
+            return this.celle;
+        }
 
         private void GameCanvas_Loaded(object sender, RoutedEventArgs e)
         {
