@@ -9,7 +9,7 @@ namespace pellegrinoAgnati
     public abstract class Blocco
     {
         protected abstract Pos[][] Blocchetto { get; } //piastra che costituisce un intera forma
-        protected abstract Pos InizioOffset { get; }
+        protected abstract Pos InizioOffset { get; } //posizione iniziale dei blocchi che compongono la forma
         public abstract int IDBlocco { get; } //ID della forma costituita dai blocchetti
 
         private int StatoRotazione; //rotazione del blocco
@@ -19,9 +19,9 @@ namespace pellegrinoAgnati
             offset = new Pos(InizioOffset.Riga, InizioOffset.Colonna);
         }
 
-        public IEnumerable<Pos> BlocchettoPos()
+        public IEnumerable<Pos> BlocchettoPos()       
         {
-            foreach (Pos p in Blocchetto[StatoRotazione])
+            foreach (Pos p in Blocchetto[StatoRotazione]) //per ogni rotazione scambio i blocchetti con lo spazio vuoto
             {
                 yield return new Pos(p.Riga + offset.Riga, p.Colonna + offset.Colonna); //yield specifica il valore successivo
             }
@@ -43,13 +43,5 @@ namespace pellegrinoAgnati
             offset.Riga += rig;
             offset.Colonna += colon;
         }
-
-        public void ResetBlocco()    //reset del blocco nel punto di partenza e con la rotazione iniziale
-        {
-            StatoRotazione = 0;
-            offset.Riga = InizioOffset.Riga;
-            offset.Colonna=InizioOffset.Colonna;
-        }
-
     }
 }
