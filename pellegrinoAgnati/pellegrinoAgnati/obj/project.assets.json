@@ -1,38 +1,38 @@
 {
   "version": 3,
   "targets": {
-    "net5.0-windows7.0": {}
+    "net6.0-windows7.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    "net5.0-windows7.0": []
+    "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\matti\\.nuget\\packages\\": {}
+    "C:\\Users\\agnati_mattia\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\matti\\OneDrive\\Desktop\\ProgettoPelleAgnati\\pellegrinoAgnati\\pellegrinoAgnati\\pellegrinoAgnati.csproj",
+      "projectUniqueName": "D:\\Agnati\\ProgettoPelleAgnati\\pellegrinoAgnati\\pellegrinoAgnati\\pellegrinoAgnati.csproj",
       "projectName": "pellegrinoAgnati",
-      "projectPath": "C:\\Users\\matti\\OneDrive\\Desktop\\ProgettoPelleAgnati\\pellegrinoAgnati\\pellegrinoAgnati\\pellegrinoAgnati.csproj",
-      "packagesPath": "C:\\Users\\matti\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\matti\\OneDrive\\Desktop\\ProgettoPelleAgnati\\pellegrinoAgnati\\pellegrinoAgnati\\obj\\",
+      "projectPath": "D:\\Agnati\\ProgettoPelleAgnati\\pellegrinoAgnati\\pellegrinoAgnati\\pellegrinoAgnati.csproj",
+      "packagesPath": "C:\\Users\\agnati_mattia\\.nuget\\packages\\",
+      "outputPath": "D:\\Agnati\\ProgettoPelleAgnati\\pellegrinoAgnati\\pellegrinoAgnati\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\matti\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\agnati_mattia\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net5.0-windows7.0"
+        "net6.0-windows"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net5.0-windows7.0": {
-          "targetAlias": "net5.0-windows",
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
           "projectReferences": {}
         }
       },
@@ -43,15 +43,16 @@
       }
     },
     "frameworks": {
-      "net5.0-windows7.0": {
-        "targetAlias": "net5.0-windows",
+      "net6.0-windows7.0": {
+        "targetAlias": "net6.0-windows",
         "imports": [
           "net461",
           "net462",
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -63,7 +64,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
