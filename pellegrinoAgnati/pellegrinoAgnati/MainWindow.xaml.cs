@@ -50,6 +50,8 @@ namespace pellegrinoAgnati
 
         public MainWindow()
         {
+            ConnectionWithServer connessione = new ConnectionWithServer();
+            connessione.Connection("Server1", "Mattia");
             InitializeComponent();
         }
 
