@@ -9,9 +9,9 @@ namespace pellegrinoAgnati
 {
     public class ConnectionWithServer
     {
-         private TcpClient? client;
+         private TcpClient client;
          private Int32 porta = 8080;
-         private NetworkStream? stream;
+         private NetworkStream stream;
 
         public void Connection(String server, String nomePlayer) //stabilisce la connessione con il server
         {

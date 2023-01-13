@@ -12,6 +12,8 @@ namespace pellegrinoAgnati
         protected abstract Pos InizioOffset { get; } //posizione iniziale dei blocchi che compongono la forma
         public abstract int IDBlocco { get; } //ID della forma costituita dai blocchetti
 
+        
+
         private int StatoRotazione; //rotazione del blocco
         private Pos offset;
         public Blocco()
@@ -42,6 +44,12 @@ namespace pellegrinoAgnati
         {
             offset.Riga += rig;
             offset.Colonna += colon;
+        }
+        public void reset()
+        {
+            StatoRotazione = 0;
+            offset.Riga = InizioOffset.Riga;
+            offset.Colonna = InizioOffset.Colonna;
         }
     }
 }
