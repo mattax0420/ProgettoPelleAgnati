@@ -63,3 +63,5 @@ C:\Users\Pelle\Documents\GitHub\ProgettoPelleAgnati\pellegrinoAgnati\pellegrinoA
 C:\Users\Pelle\Documents\GitHub\ProgettoPelleAgnati\pellegrinoAgnati\pellegrinoAgnati\obj\Debug\net6.0-windows\ref\pellegrinoAgnati.dll
 C:\Users\Pelle\Documents\GitHub\ProgettoPelleAgnati\pellegrinoAgnati\pellegrinoAgnati\obj\Debug\net6.0-windows\pellegrinoAgnati.pdb
 C:\Users\Pelle\Documents\GitHub\ProgettoPelleAgnati\pellegrinoAgnati\pellegrinoAgnati\obj\Debug\net6.0-windows\pellegrinoAgnati.genruntimeconfig.cache
+C:\Users\matti\OneDrive\Desktop\ProgettoPelleAgnati\pellegrinoAgnati\pellegrinoAgnati\obj\Debug\net6.0-windows\login.g.cs
+C:\Users\matti\OneDrive\Desktop\ProgettoPelleAgnati\pellegrinoAgnati\pellegrinoAgnati\obj\Debug\net6.0-windows\login.baml

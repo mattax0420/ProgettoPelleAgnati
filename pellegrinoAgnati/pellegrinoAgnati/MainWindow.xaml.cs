@@ -51,8 +51,8 @@ namespace pellegrinoAgnati
         public MainWindow()
         {
             InitializeComponent();
-          //  ConnectionWithServer connessione = new ConnectionWithServer();
-            //connessione.Connection("Server1", "Mattia");
+            ConnectionWithServer connessione = new ConnectionWithServer();
+            connessione.Connection("Mattia");
             gameState = new gameState();
             celle = SetUpCanvas(gameState.grid);
 
