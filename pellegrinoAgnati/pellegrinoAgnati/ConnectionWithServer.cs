@@ -9,7 +9,7 @@ namespace pellegrinoAgnati
 {
     public class ConnectionWithServer
     {
-         private TcpClient? client;
+       /*  private TcpClient? client;
          private Int32 porta = 8080;
          private NetworkStream? stream;
 
@@ -58,7 +58,7 @@ namespace pellegrinoAgnati
         {
             stream.Close();
             client.Close();
-        }
+        }*/
 
         
     }

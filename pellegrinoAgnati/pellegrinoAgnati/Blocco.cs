@@ -43,5 +43,13 @@ namespace pellegrinoAgnati
             offset.Riga += rig;
             offset.Colonna += colon;
         }
+
+        //implementato x 
+        public void Reset()
+        {
+            StatoRotazione = 0;
+            offset.Riga = InizioOffset.Riga;
+            offset.Colonna=InizioOffset.Colonna;
+        }
     }
 }

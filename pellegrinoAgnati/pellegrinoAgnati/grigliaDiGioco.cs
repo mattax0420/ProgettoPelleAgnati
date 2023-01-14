@@ -6,17 +6,32 @@ using System.Threading.Tasks;
 
 namespace pellegrinoAgnati
 {
-    internal class grigliaDiGioco
+    public class grigliaDiGioco
     {
         /*
          la griglia è un array bidimensionale , ci salvo la posizione dei blocchi solo una volta incastrati , durante la caduta non ne tengo traccia ,
          
          */
-        private int[,] grid;        // 0--> cella vuota , poi un numero per ogni colore dei blocchi (spazi occupati da un blocco rosso avranno un numero(es 3 ) spazi occupati da un blocco azzurro es.2)
+        private readonly int[,] grid;        // 0--> cella vuota , poi un numero per ogni colore dei blocchi (spazi occupati da un blocco rosso avranno un numero(es 3 ) spazi occupati da un blocco azzurro es.2)
 
 
         public int NRighe { get; set; }
         public int NColonne { get; set; }
+
+
+        /*
+         * 
+         * PER ACCEDERE IN MODO PIU COMODO ALLE CELLE DELLA GRID (
+         * 
+         * ES.   IN CLASS GAMESTATE NEL METODO PER PIAZZARE UN BLOCCO       grid[pos.Riga, pos.Colonna] = bloccoCorrente.IDBlocco;   
+         * 
+         * )
+         */
+        public int this[int r,int c]
+        {
+            get=>grid[r,c];
+            set=>grid[r,c]=value;
+        }
 
 
         public grigliaDiGioco() 
@@ -34,7 +49,7 @@ namespace pellegrinoAgnati
         //vedo se una cella è vuota o occupata
         public bool isEmpty(int r, int c)
         {
-            return grid[r, c] == 0;
+            return r>=0 && r< NRighe && c>=0 && c<NColonne && grid[r, c] == 0;
         }
 
 

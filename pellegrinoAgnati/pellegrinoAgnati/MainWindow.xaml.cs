@@ -31,7 +31,6 @@ namespace pellegrinoAgnati
             new BitmapImage(new Uri("Assets/TilePurple.png",UriKind.Relative)),     //6-> viola
             new BitmapImage(new Uri("Assets/TileRed.png",UriKind.Relative))      //7-> rosso
         };
-
         private readonly ImageSource[] blocchi = new ImageSource[]      //vari blocchi 
         {
             new BitmapImage(new Uri("Assets/Block-Empty.png",UriKind.Relative)),
@@ -44,15 +43,19 @@ namespace pellegrinoAgnati
             new BitmapImage(new Uri("Assets/Block-Z.png",UriKind.Relative))
         };
 
-                                    //singole celle della grid, una immagine in ogni cella 
-        private Image[,] celle;     //20 righe 10 colonne come griglia di gioco
+        private readonly Image[,] celle;     
+
+        private gameState gameState = new gameState();
 
 
         public MainWindow()
         {
-            ConnectionWithServer connessione = new ConnectionWithServer();
-            connessione.Connection("Server1", "Mattia");
             InitializeComponent();
+          //  ConnectionWithServer connessione = new ConnectionWithServer();
+            //connessione.Connection("Server1", "Mattia");
+            gameState = new gameState();
+            celle = SetUpCanvas(gameState.grid);
+
         }
 
         private Image[,] SetUpCanvas(grigliaDiGioco grid)
@@ -70,21 +73,77 @@ namespace pellegrinoAgnati
                         Width = cellSize,
                         Height = cellSize,
                     };
-                    Canvas.SetTop(cella, cellSize);
-                    Canvas.SetLeft(cella, cellSize);
-                    //celle = this.celle
+                    Canvas.SetTop(cella, (r -2)*cellSize);
+                    Canvas.SetLeft(cella, c*cellSize);
+                    grigliaGioco.Children.Add(cella);
+                    celle[r, c] = cella;
+                    
                 }
             }
-            return this.celle;
+            return celle;
         }
+
+
+
+        /*
+         AREA DI GIOCO DISEGNATA(chiamo il metodo) quando si carica il canvas (loaded)
+         */
+
+        /*
+ cosi vedo griglia vuota perche blocco viene disegnato nelle row nascoste (non ancora spawnato)
+ */
+        private void Draw(gameState state)
+        {
+            //disegno grid
+
+            for (int r = 0; r < state.grid.NRighe; r++)
+            {
+                for (int c = 0; c < state.grid.NColonne; c++)
+                {
+                    int id = state.grid[r, c];
+                    celle[r, c].Source = quadratini[id];
+                }
+            }
+            //disegno blocco (corrente)
+
+            foreach (Pos p in state.BloccoCorrente.BlocchettoPos())
+            {
+                celle[p.Riga, p.Colonna].Source = quadratini[state.BloccoCorrente.IDBlocco];
+            }
+        }
+
+
 
         private void GameCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-
+            Draw(gameState);
         }
         private void window_keyDown(object sender, KeyEventArgs e)
         {
+            // se gioco finito , premi e non succede niente
+            if (gameState.GameOVer)
+                return;
+            switch (e.Key)
+            {
+                case Key.S:
+                    gameState.moveGiu();
+                    break;
+                case Key.A:
+                    gameState.moveSinistra();
+                    break;
+                case Key.D:
+                    gameState.moveDestra();
+                    break;
+                case Key.Left:
+                    gameState.rotateAntiOrario();
+                    break;
+                case Key.Right:
+                    gameState.rotateOrario();
+                    break;
+                default:return;
 
+            }
+            Draw(gameState);
         }
 
 
