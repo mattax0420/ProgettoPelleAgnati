@@ -8,6 +8,9 @@ namespace pellegrinoAgnati
 {
     public class gameState
     {
+
+
+
         //full prop per blocco corrente
         private Blocco bloccoCorrente;
 
@@ -22,6 +25,18 @@ namespace pellegrinoAgnati
             }
         }
 
+
+
+        public int livello { get; set; }
+
+
+        public int velocità { get; set; }
+
+
+
+
+
+        public int punteggio { get; set; }
         public grigliaDiGioco grid { get; set; }    //NB--> dava errore perchè grigliaDiGioco era internal e non pubblico 
         public randomGeneratoreBlocchi queue { get; set; }
         public bool GameOVer { get; private set; }
@@ -31,6 +46,8 @@ namespace pellegrinoAgnati
             grid = new grigliaDiGioco(22, 10);
             queue = new randomGeneratoreBlocchi();
             bloccoCorrente = queue.GetAndUpdate();
+            livello = 0;
+            punteggio = 0;
         }
 
 
@@ -105,9 +122,10 @@ namespace pellegrinoAgnati
                 bloccoCorrente.Movimento(-1, 0);
                 piazzaBlocco();
             }
+            punteggio+= grid.getNRowCancellate();
+            livello = punteggio;
+            
         }
-
-
 
 
 
@@ -132,13 +150,15 @@ namespace pellegrinoAgnati
         {
             return !(grid.isRowEmpty(0) && grid.isRowEmpty(1));
         }
+
+
         private void piazzaBlocco()
         {
             foreach (Pos pos in bloccoCorrente.BlocchettoPos())
             {
                 grid[pos.Riga, pos.Colonna] = bloccoCorrente.IDBlocco;
             }
-            grid.getNRowCancellate();
+
             if (isGameOver())
             {
                 GameOVer = true;
@@ -147,6 +167,7 @@ namespace pellegrinoAgnati
             {
                 bloccoCorrente = queue.GetAndUpdate();
             }
+            
 
         }
     }

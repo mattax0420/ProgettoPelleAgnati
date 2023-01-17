@@ -41,7 +41,7 @@
         <TextBlock x:Name="Score" 
                    Grid.Row="0"
                    Grid.Column="1"
-                   Text="Punti:"
+                   Text=""
                    Foreground="White"
                    Margin="0,10,0,10"
                    TextAlignment="Center"/>
@@ -56,7 +56,7 @@
                        Foreground="White"
                                TextAlignment="Center"/>
             <Image x:Name="prossima"
-                           Width="125"/>
+                           Width="125" Height="100"/>
         </StackPanel>
 
 
@@ -73,12 +73,12 @@
                            Foreground="White"
                            FontSize="40"
                            TextAlignment="Center"/>
-                <TextBlock Text="FinalScore: "
+                <TextBlock x:Name="punteggioFinaleTxt" Text="FinalScore: "
                            Foreground="White"
                            FontSize="20"
                            TextAlignment="Left"/>
                 <Button Content="Gioca ancora"
-                        Background="Green"
+                        Background="White"
                         Click="Button_Click_2"/>
             </StackPanel>
         </Grid>

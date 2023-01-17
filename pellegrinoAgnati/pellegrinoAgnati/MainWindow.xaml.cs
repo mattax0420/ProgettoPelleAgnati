@@ -59,15 +59,19 @@ namespace pellegrinoAgnati
             imageControls = SetupGameCanvas(gameState.grid);
 
             //timer
-            fallIntervall = TimeSpan.FromMilliseconds(700);
-            timer = new DispatcherTimer();
+            fallIntervall = new TimeSpan(0, 0, 0, 0, 700);
             timer.Tick += OnTimedEvent;
             timer.Interval = fallIntervall;
             timer.Start();
+
         }
+
+
+
 
         private void OnTimedEvent(object sender, EventArgs e)
         {
+            Score.Text = gameState.punteggio.ToString();
             if (!gameState.GameOVer)
             {
                 gameState.moveGiu();
@@ -76,6 +80,7 @@ namespace pellegrinoAgnati
             else    //mostro finestra gameover
             {
                 gameOverMenu.Visibility = Visibility.Visible;
+                punteggioFinaleTxt.Text = "Punteggio totale:"+Score.Text;
             }
         }
 
@@ -133,6 +138,8 @@ namespace pellegrinoAgnati
             DrawGrid(gameState.grid);
             DrawBlock(gameState.BloccoCorrente);
 
+            //next immagine
+            prossima.Source = blocchi[gameState.queue.next.IDBlocco];
         }
 
 
@@ -167,7 +174,12 @@ namespace pellegrinoAgnati
         }
 
 
-
+        //restartare gioco dopo gameOver
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            gameState = new gameState();
+            gameOverMenu.Visibility = Visibility.Hidden;
+        }
 
 
 
@@ -194,9 +206,6 @@ namespace pellegrinoAgnati
 
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
 
-        }
     }
 }

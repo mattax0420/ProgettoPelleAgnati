@@ -19,6 +19,7 @@ namespace pellegrinoAgnati
         public int NColonne { get; set; }
 
 
+
         /*
          * 
          * PER ACCEDERE IN MODO PIU COMODO ALLE CELLE DELLA GRID (
@@ -71,7 +72,11 @@ namespace pellegrinoAgnati
                     cancellate++;
                 }
                 else if (cancellate > 0)
+                {
                     abbassaRow(r, cancellate);
+                    //score++
+                }
+                    
             }
 
             return cancellate;
