@@ -21,6 +21,7 @@ public class clientThread extends Thread{
         int cont=0;
         while (cicla) {
             try {
+                System.out.print("Pronto a ricevere un nuovo messaggio");
                 ricevuto = in.readLine();
                 if(ricevuto != null){ 
                     System.out.println(_socket.id+" ha ricevuto : " + ricevuto);
@@ -31,6 +32,7 @@ public class clientThread extends Thread{
                     }
                    
                     String[] messSplit=ricevuto.split(":");
+                
                     if(messSplit[0].equals("punteggio")){
                         cont++;
                         _socket.punteggio=Integer.parseInt(messSplit[1]);
@@ -51,6 +53,7 @@ public class clientThread extends Thread{
                                 shared.getInstance().sockets.get(1).out.println(perso);
                                 shared.getInstance().sockets.get(2).out.println(vinto);
                             }
+                            cicla=false;
                     }
                 }
             } catch (IOException e) {

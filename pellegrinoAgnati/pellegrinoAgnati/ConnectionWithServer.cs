@@ -9,9 +9,14 @@ namespace pellegrinoAgnati
 {
     public class ConnectionWithServer
     {
-         private TcpClient client;
+         private static TcpClient client;
          private Int32 porta = 8080;
-         private NetworkStream? stream;
+         public static NetworkStream stream;
+
+        public ConnectionWithServer()
+        {
+
+        }
 
         public void Connection(String nomePlayer) //stabilisce la connessione con il server
         {
@@ -19,10 +24,11 @@ namespace pellegrinoAgnati
             {
                 client = new TcpClient();
                 client.Connect("localhost", porta);
-                stream=client.GetStream();
+                stream = client.GetStream();
 
                 Console.WriteLine("Connessione stabilita");
-                send(nomePlayer + "è pronto alla connessione");
+                //send(nomePlayer + " e' pronto alla connessione");
+                send("connected:" + nomePlayer);
             }
             catch (ArgumentNullException e)
             {
@@ -37,7 +43,7 @@ namespace pellegrinoAgnati
         
         public void send(string messaggio)  //invio del messaggio al client
         {
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes(messaggio);
+            Byte[] data = System.Text.Encoding.ASCII.GetBytes(messaggio + "\n");
 
             stream = client.GetStream();
             stream.Write(data, 0, data.Length);

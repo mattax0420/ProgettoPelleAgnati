@@ -19,9 +19,33 @@ namespace pellegrinoAgnati
     /// </summary>
     public partial class login : Window
     {
+        public string userName { get; set; }
+
+
         public login()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtUser.Text != "")
+            {
+                ConnectionWithServer connessione = new ConnectionWithServer();
+                try
+                {
+                    userName = txtUser.Text;
+                    connessione.Connection(txtUser.Text);
+                    this.Close();
+
+                }
+                catch { }
+
+            }
+            else
+            {
+                MessageBox.Show("INSERIRE UN NOME!!!");
+            }
         }
     }
 }

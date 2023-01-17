@@ -1,21 +1,26 @@
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.Scanner;
 
 
 public class ServerThread extends Thread{
     
     public boolean connected = false;
+        private PrintWriter output;
+        private Scanner input;
+
 
     public void Connessione() throws IOException   {
         shared istance=shared.getInstance(); 
-        ServerSocket sersock = new ServerSocket(8080); 
-        Socket sock;
+        ServerSocket sersock = new ServerSocket(8080);
+        Socket sock = new Socket();
+        System.out.println("Server pronto alla connessione");
         while(true){
             try {
                     
-                System.out.println("Server pronto alla connessione");
                 sock = sersock.accept();
 
                 mySocket ms=new mySocket(sock);
@@ -26,7 +31,6 @@ public class ServerThread extends Thread{
 
                 connected = true;
                 //receive();
-                sersock.close();
             }
             catch (SocketTimeoutException ex) {
                 sersock.close();
@@ -35,7 +39,7 @@ public class ServerThread extends Thread{
         }  
     }
     
-    /*public void receive() throws IOException {
+    public void receive() throws IOException {
         //if (connected = true)  
         String risposta=input.nextLine();
         System.out.println(risposta);
@@ -50,5 +54,5 @@ public class ServerThread extends Thread{
     public void close() {
         input.close();
         output.close();
-    }*/
+    }
 }

@@ -33,9 +33,6 @@ namespace pellegrinoAgnati
         public int velocità { get; set; }
 
 
-
-
-
         public int punteggio { get; set; }
         public grigliaDiGioco grid { get; set; }    //NB--> dava errore perchè grigliaDiGioco era internal e non pubblico 
         public randomGeneratoreBlocchi queue { get; set; }
@@ -51,6 +48,14 @@ namespace pellegrinoAgnati
         }
 
 
+
+        /*public int getVelocità(TimeSpan interval)
+        {
+            if(livello % 2==0)
+            {
+
+            }
+        }*/
 
 
 
@@ -122,8 +127,8 @@ namespace pellegrinoAgnati
                 bloccoCorrente.Movimento(-1, 0);
                 piazzaBlocco();
             }
-            punteggio+= grid.getNRowCancellate();
-            livello = punteggio;
+            punteggio+= grid.getNRowCancellate()*100;
+            livello = punteggio/10;
             
         }
 

@@ -50,37 +50,44 @@ namespace pellegrinoAgnati
 
         private gameState gameState = new gameState();
 
-        private DispatcherTimer timer;
-        private TimeSpan fallIntervall;
+        DispatcherTimer timer;
+        TimeSpan fallInterval = new TimeSpan(0, 0, 0, 0, 700);
+        String username;
+        ConnectionWithServer connessione = new ConnectionWithServer();
 
         public MainWindow()
         {
             InitializeComponent();
+
+            login f2 = new login();
+            f2.ShowDialog();
             imageControls = SetupGameCanvas(gameState.grid);
 
             //timer
-            fallIntervall = new TimeSpan(0, 0, 0, 0, 700);
-            timer.Tick += OnTimedEvent;
-            timer.Interval = fallIntervall;
+            timer = new DispatcherTimer();
+            timer.Interval = fallInterval;
+            timer.Tick += Timer_Tick;
             timer.Start();
+
+            //username
+            username = f2.userName;
+            
 
         }
 
-
-
-
-        private void OnTimedEvent(object sender, EventArgs e)
+        private void Timer_Tick(object? sender, EventArgs e)
         {
             Score.Text = gameState.punteggio.ToString();
             if (!gameState.GameOVer)
-            {
+            { 
                 gameState.moveGiu();
                 Draw(gameState);
             }
-            else    //mostro finestra gameover
+            else
             {
+                connessione.send("punteggio " + username + ":" + Score.Text);
                 gameOverMenu.Visibility = Visibility.Visible;
-                punteggioFinaleTxt.Text = "Punteggio totale:"+Score.Text;
+                punteggioFinaleTxt.Text = "punteggio di " + username + ": " + Score.Text;
             }
         }
 
@@ -192,7 +199,7 @@ namespace pellegrinoAgnati
 
         private void GameCanvas_Loaded(object sender, RoutedEventArgs e)
         {
-
+            Draw(gameState);
         }
 
 
