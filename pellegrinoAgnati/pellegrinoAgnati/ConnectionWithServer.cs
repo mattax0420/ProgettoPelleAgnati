@@ -12,6 +12,7 @@ namespace pellegrinoAgnati
          private static TcpClient client;
          private Int32 porta = 8080;
          public static NetworkStream stream;
+        ClientThread ct;
 
         public ConnectionWithServer()
         {
@@ -24,10 +25,11 @@ namespace pellegrinoAgnati
             {
                 client = new TcpClient();
                 client.Connect("localhost", porta);
+                //ct = new ClientThread(client);
                 stream = client.GetStream();
 
-                Console.WriteLine("Connessione stabilita");
-                //send(nomePlayer + " e' pronto alla connessione");
+                //ct.run();
+
                 send("connected:" + nomePlayer);
             }
             catch (ArgumentNullException e)
@@ -49,16 +51,6 @@ namespace pellegrinoAgnati
             stream.Write(data, 0, data.Length);
 
             Console.WriteLine("Sent: {0}", messaggio);
-        }
-
-        public void receive() //ricezione del messaggio del server
-        {
-            Byte[] data = new byte[256];
-            String responseData = String.Empty;
-
-            Int32 bytes = stream.Read(data, 0, data.Length);
-            responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-            Console.WriteLine("Received: {0}", responseData);
         }
 
         public void closeConnection() //chiude completamente la connessione
