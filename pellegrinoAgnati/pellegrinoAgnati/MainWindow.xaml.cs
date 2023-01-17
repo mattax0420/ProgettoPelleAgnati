@@ -88,6 +88,7 @@ namespace pellegrinoAgnati
                 connessione.send("punteggio " + username + ":" + Score.Text);
                 gameOverMenu.Visibility = Visibility.Visible;
                 punteggioFinaleTxt.Text = "punteggio di " + username + ": " + Score.Text;
+                timer.Stop();
             }
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace pellegrinoAgnati
@@ -13,6 +14,7 @@ namespace pellegrinoAgnati
          private Int32 porta = 8080;
          public static NetworkStream stream;
         ClientThread ct;
+        
 
         public ConnectionWithServer()
         {
@@ -25,11 +27,13 @@ namespace pellegrinoAgnati
             {
                 client = new TcpClient();
                 client.Connect("localhost", porta);
-                //ct = new ClientThread(client);
+                ClientThread thread=new ClientThread(client);
+
+                Thread ct = new Thread(new ThreadStart(thread.run));
                 stream = client.GetStream();
-
-                //ct.run();
-
+               
+                ct.Start();
+               
                 send("connected:" + nomePlayer);
             }
             catch (ArgumentNullException e)
@@ -57,8 +61,6 @@ namespace pellegrinoAgnati
         {
             stream.Close();
             client.Close();
-        }
-
-        
+        } 
     }
 }
