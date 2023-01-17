@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace pellegrinoAgnati
 {
@@ -20,6 +21,8 @@ namespace pellegrinoAgnati
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
         private readonly ImageSource[] quadratini = new ImageSource[]  //singola piastra che compone il blocco 
         {                                                                       //numeri che riempiranno l array nella classe grigliaDiGioco
             new BitmapImage(new Uri("Assets/TileEmpty.png",UriKind.Relative)),      // 0 -> vuoto
@@ -43,86 +46,103 @@ namespace pellegrinoAgnati
             new BitmapImage(new Uri("Assets/Block-Z.png",UriKind.Relative))
         };
 
-        private readonly Image[,] celle;     
+        private readonly Image[,] imageControls;
 
         private gameState gameState = new gameState();
 
+        private DispatcherTimer timer;
+        private TimeSpan fallIntervall;
 
         public MainWindow()
         {
             InitializeComponent();
-            ConnectionWithServer connessione = new ConnectionWithServer();
-            connessione.Connection("Mattia");
-            gameState = new gameState();
-            celle = SetUpCanvas(gameState.grid);
+            imageControls = SetupGameCanvas(gameState.grid);
 
+            //timer
+            fallIntervall = TimeSpan.FromMilliseconds(700);
+            timer = new DispatcherTimer();
+            timer.Tick += OnTimedEvent;
+            timer.Interval = fallIntervall;
+            timer.Start();
         }
 
-        private Image[,] SetUpCanvas(grigliaDiGioco grid)
+        private void OnTimedEvent(object sender, EventArgs e)
         {
-            Image[,] celle = new Image[grid.NRighe, grid.NColonne];
-            int cellSize = 25;  //in base a width e heigth del canvas
+            if (!gameState.GameOVer)
+            {
+                gameState.moveGiu();
+                Draw(gameState);
+            }
+            else    //mostro finestra gameover
+            {
+                gameOverMenu.Visibility = Visibility.Visible;
+            }
+        }
 
-            /*looppo la tabella e disegno le celle */
+        private Image[,] SetupGameCanvas(grigliaDiGioco grid)
+        {
+            Image[,] imageControls = new Image[grid.NRighe, grid.NColonne];
+            int cellSize = 25;
+
             for (int r = 0; r < grid.NRighe; r++)
             {
                 for (int c = 0; c < grid.NColonne; c++)
-                {                                                                                     //NO Image cella = new Image(cellSize,cellSize);
-                    Image cella = new Image
-                    {       //setto le prop
-                        Width = cellSize,
-                        Height = cellSize,
-                    };
-                    Canvas.SetTop(cella, (r -2)*cellSize);
-                    Canvas.SetLeft(cella, c*cellSize);
-                    grigliaGioco.Children.Add(cella);
-                    celle[r, c] = cella;
-                    
-                }
-            }
-            return celle;
-        }
-
-
-
-        /*
-         AREA DI GIOCO DISEGNATA(chiamo il metodo) quando si carica il canvas (loaded)
-         */
-
-        /*
- cosi vedo griglia vuota perche blocco viene disegnato nelle row nascoste (non ancora spawnato)
- */
-        private void Draw(gameState state)
-        {
-            //disegno grid
-
-            for (int r = 0; r < state.grid.NRighe; r++)
-            {
-                for (int c = 0; c < state.grid.NColonne; c++)
                 {
-                    int id = state.grid[r, c];
-                    celle[r, c].Source = quadratini[id];
+                    Image imageControl = new Image
+                    {
+                        Width = cellSize,
+                        Height = cellSize
+                    };
+
+                    Canvas.SetTop(imageControl, (r - 2) * cellSize + 10);
+                    Canvas.SetLeft(imageControl, c * cellSize);
+                    grigliaGioco.Children.Add(imageControl);
+                    imageControls[r, c] = imageControl;
                 }
             }
-            //disegno blocco (corrente)
 
-            foreach (Pos p in state.BloccoCorrente.BlocchettoPos())
+            return imageControls;
+        }
+
+        private void DrawGrid(grigliaDiGioco grid)
+        {
+            for (int r = 0; r < grid.NRighe; r++)
             {
-                celle[p.Riga, p.Colonna].Source = quadratini[state.BloccoCorrente.IDBlocco];
+                for (int c = 0; c < grid.NColonne; c++)
+                {
+                    int id = grid[r, c];
+                    imageControls[r, c].Opacity = 1;
+                    imageControls[r, c].Source = quadratini[id];
+                }
+            }
+        }
+
+        private void DrawBlock(Blocco block)
+        {
+            foreach (Pos p in block.BlocchettoPos())
+            {
+                imageControls[p.Riga, p.Colonna].Opacity = 1;
+                imageControls[p.Riga, p.Colonna].Source = quadratini[block.IDBlocco];
             }
         }
 
 
 
-        private void GameCanvas_Loaded(object sender, RoutedEventArgs e)
+        private void Draw(gameState gameState)
         {
-            Draw(gameState);
+            DrawGrid(gameState.grid);
+            DrawBlock(gameState.BloccoCorrente);
+
         }
+
+
+
         private void window_keyDown(object sender, KeyEventArgs e)
         {
-            // se gioco finito , premi e non succede niente
             if (gameState.GameOVer)
+            {
                 return;
+            }
             switch (e.Key)
             {
                 case Key.S:
@@ -135,14 +155,14 @@ namespace pellegrinoAgnati
                     gameState.moveDestra();
                     break;
                 case Key.Left:
-                    gameState.rotateAntiOrario();
-                    break;
-                case Key.Right:
                     gameState.rotateOrario();
                     break;
-                default:return;
-
+                case Key.Right:
+                    gameState.rotateAntiOrario();
+                    break;
+                default: return;
             }
+
             Draw(gameState);
         }
 
@@ -158,17 +178,10 @@ namespace pellegrinoAgnati
 
 
 
+        private void GameCanvas_Loaded(object sender, RoutedEventArgs e)
+        {
 
-
-
-
-
-
-
-
-
-
-
+        }
 
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -27,7 +27,7 @@ namespace pellegrinoAgnati
         /*NB
          questo è il blocco che vedrà il giocatore nella imageBox del blocco che sta arrivando 
          */
-        public Blocco next { get; set; }
+        public Blocco next { get; private set; }
 
         private readonly Random random = new Random();
 
@@ -40,7 +40,7 @@ namespace pellegrinoAgnati
         /*
          
          */
-        public Blocco getAndUpdate()
+        public Blocco GetAndUpdate()
         {
             Blocco blocco = next;
 
@@ -48,7 +48,7 @@ namespace pellegrinoAgnati
             {
                 next = getRandom();
             } while (blocco.IDBlocco == next.IDBlocco); //STESSA FORMA
-            return blocco;
+            return next.getInstance();
         }
 //costr
         public randomGeneratoreBlocchi()

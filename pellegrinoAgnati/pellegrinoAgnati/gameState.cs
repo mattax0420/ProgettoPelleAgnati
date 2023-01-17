@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace pellegrinoAgnati
 {
-    //gestisce le interazioni tra blocchi e grigliaDiGioco
-    public class gameState    
+    public class gameState
     {
         //full prop per blocco corrente
         private Blocco bloccoCorrente;
@@ -29,9 +28,9 @@ namespace pellegrinoAgnati
 
         public gameState()
         {
-            grid=new grigliaDiGioco(22,10);
-            queue=new randomGeneratoreBlocchi();
-            bloccoCorrente = queue.getAndUpdate();
+            grid = new grigliaDiGioco(22, 10);
+            queue = new randomGeneratoreBlocchi();
+            bloccoCorrente = queue.GetAndUpdate();
         }
 
 
@@ -43,7 +42,7 @@ namespace pellegrinoAgnati
          Idea 
             giriamo il blocco, se finisce in una pos ambigua tipo fuori dalla grid lo rigiriamo 
          */
-//ROTAZIONE
+        //ROTAZIONE
         public void rotateOrario()
         {
             bloccoCorrente.RotazioneDestra();
@@ -76,20 +75,20 @@ namespace pellegrinoAgnati
 
         }
 
-//SPOSTAMENTO
-        
+        //SPOSTAMENTO
+
         public void moveSinistra()
         {
             bloccoCorrente.Movimento(0, -1);
             if (!chkPosition())
             {
-                bloccoCorrente.Movimento(0,1);
+                bloccoCorrente.Movimento(0, 1);
             }
         }
         //analogo
         public void moveDestra()
         {
-            bloccoCorrente.Movimento(0,1);
+            bloccoCorrente.Movimento(0, 1);
             if (!chkPosition())
             {
                 bloccoCorrente.Movimento(0, -1);
@@ -117,7 +116,7 @@ namespace pellegrinoAgnati
 
 
 
-//metodi utili 
+        //metodi utili 
 
         private bool chkPosition()
         {
@@ -146,13 +145,9 @@ namespace pellegrinoAgnati
             }
             else
             {
-                bloccoCorrente = queue.getAndUpdate();
+                bloccoCorrente = queue.GetAndUpdate();
             }
 
         }
-
-
-
-
     }
 }

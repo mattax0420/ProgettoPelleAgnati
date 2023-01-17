@@ -21,5 +21,9 @@ namespace pellegrinoAgnati
         protected override Pos[][] Blocchetto => blocchetti; //in base alla rotazione grazie al get nella classe Blocco varierà la posizione dei blocchetti
 
         protected override Pos InizioOffset => new Pos(0,3); //posizione iniziale 
+        override public BloccoT getInstance()
+        {
+            return new BloccoT();
+        }
     }
 }

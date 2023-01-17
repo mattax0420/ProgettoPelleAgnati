@@ -12,6 +12,12 @@ namespace pellegrinoAgnati
         protected abstract Pos InizioOffset { get; } //posizione iniziale dei blocchi che compongono la forma
         public abstract int IDBlocco { get; } //ID della forma costituita dai blocchetti
 
+        public String guid = Guid.NewGuid().ToString();
+
+        public abstract Blocco getInstance();
+
+
+
         private int StatoRotazione; //rotazione del blocco
         private Pos offset;
         public Blocco()

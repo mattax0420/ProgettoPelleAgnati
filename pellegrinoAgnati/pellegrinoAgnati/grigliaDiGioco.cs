@@ -27,14 +27,14 @@ namespace pellegrinoAgnati
          * 
          * )
          */
-        public int this[int r,int c]
+        public int this[int r, int c]
         {
-            get=>grid[r,c];
-            set=>grid[r,c]=value;
+            get => grid[r, c];
+            set => grid[r, c] = value;
         }
 
 
-        public grigliaDiGioco() 
+        public grigliaDiGioco()
         {
             NRighe = 20;
             NColonne = 10;
@@ -49,7 +49,7 @@ namespace pellegrinoAgnati
         //vedo se una cella è vuota o occupata
         public bool isEmpty(int r, int c)
         {
-            return r>=0 && r< NRighe && c>=0 && c<NColonne && grid[r, c] == 0;
+            return r >= 0 && r < NRighe && c >= 0 && c < NColonne && grid[r, c] == 0;
         }
 
 
