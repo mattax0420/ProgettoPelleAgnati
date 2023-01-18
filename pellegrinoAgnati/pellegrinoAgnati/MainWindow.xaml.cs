@@ -112,7 +112,7 @@ namespace pellegrinoAgnati
             }
             else
             {
-                connessione.send("punteggio " + username + ":" + Score.Text);
+                connessione.send("punteggio:" + Score.Text);
                 gameOverMenu.Visibility = Visibility.Visible;
                 punteggioFinaleTxt.Text = "punteggio di " + username + ": " + Score.Text;
                 timer.Stop();

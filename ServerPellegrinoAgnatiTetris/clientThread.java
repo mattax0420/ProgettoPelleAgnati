@@ -12,13 +12,14 @@ public class clientThread extends Thread{
         in =new BufferedReader(new InputStreamReader(_socket.socket.getInputStream()));
     }
 
+    static int cont=0;
     @Override
     public void run() {
         
         shared inst=shared.getInstance();
         String ricevuto="";
         boolean cicla=true;
-        int cont=0;
+        //int cont=0;
         while (cicla) {
             try {
                 System.out.print("Pronto a ricevere un nuovo messaggio" + "\n"); 
