@@ -14,6 +14,8 @@
         <Label Content="Username:" HorizontalAlignment="Left" Margin="79,58,0,0" VerticalAlignment="Top" Height="55" Width="125"/>
         <TextBox Name="txtUser" HorizontalAlignment="Left"  Margin="232,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Button Content="gioca" HorizontalAlignment="Left" Margin="189,149,0,0" VerticalAlignment="Top" Height="28" Width="103" Click="Button_Click"/>
+        <RadioButton x:Name="rdFacile" Content="Facile" HorizontalAlignment="Left" IsChecked="True" Margin="125,118,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="rdDifficile" Content="Difficile" HorizontalAlignment="Left" Margin="218,120,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

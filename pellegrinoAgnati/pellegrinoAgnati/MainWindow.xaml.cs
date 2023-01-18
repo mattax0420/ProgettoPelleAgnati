@@ -51,35 +51,62 @@ namespace pellegrinoAgnati
         private gameState gameState = new gameState();
 
         DispatcherTimer timer;
-        TimeSpan fallInterval = new TimeSpan(0, 0, 0, 0, 700);
+        int fallInterval = 700;
+        //TimeSpan fallInterval = new TimeSpan(0, 0, 0, 0, 700);
         String username;
         ConnectionWithServer connessione = new ConnectionWithServer();
-
+        int ratioDifficult = 2;
+        
         public MainWindow()
         {
             InitializeComponent();
 
-            login f2 = new login();
-            f2.ShowDialog();
-            imageControls = SetupGameCanvas(gameState.grid);
+            login f2;
 
+            f2 = new login();
+            if (f2.ShowDialog() == false)
+                this.Close();
+
+
+            imageControls = SetupGameCanvas(gameState.grid);
+            login.difficolta diff = f2.difficult;
+            switch (diff)
+            {
+                case login.difficolta.facile:
+                    ratioDifficult = 4;
+                    break;
+                case login.difficolta.difficile:
+                    ratioDifficult = 2;
+                    break;
+                default:
+                    break;
+            }
             //timer
             timer = new DispatcherTimer();
-            timer.Interval = fallInterval;
+            timer.Interval = new TimeSpan(0, 0, 0, 0, fallInterval);
             timer.Tick += Timer_Tick;
             timer.Start();
 
             //username
             username = f2.userName;
-            
+
+         //   prossima = 
+
 
         }
 
         private void Timer_Tick(object? sender, EventArgs e)
         {
             Score.Text = gameState.punteggio.ToString();
+            int newFallInterval = fallInterval - (gameState.punteggio/ratioDifficult);
+            TimeSpan SpanFallInterval = new TimeSpan(0, 0, 0, 0, newFallInterval);
+            timer.Stop();
+            timer.Interval = SpanFallInterval;
+            timer.Start();
+
             if (!gameState.GameOVer)
-            { 
+            {
+
                 gameState.moveGiu();
                 Draw(gameState);
             }
@@ -147,7 +174,7 @@ namespace pellegrinoAgnati
             DrawBlock(gameState.BloccoCorrente);
 
             //next immagine
-            prossima.Source = blocchi[gameState.queue.next.IDBlocco];
+            prossima.Source = blocchi[gameState.ProssimoBlocco.IDBlocco];
         }
 
 

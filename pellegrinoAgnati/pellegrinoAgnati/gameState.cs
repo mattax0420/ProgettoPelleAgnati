@@ -24,6 +24,16 @@ namespace pellegrinoAgnati
                 bloccoCorrente.Reset();
             }
         }
+        private Blocco prossimoBlocco;
+        public Blocco ProssimoBlocco
+        {
+            get => prossimoBlocco;
+            private set
+            {
+                ProssimoBlocco = value;
+                prossimoBlocco.Reset();
+            }
+        }
 
 
 
@@ -43,6 +53,7 @@ namespace pellegrinoAgnati
             grid = new grigliaDiGioco(22, 10);
             queue = new randomGeneratoreBlocchi();
             bloccoCorrente = queue.GetAndUpdate();
+            prossimoBlocco = queue.GetAndUpdate();
             livello = 0;
             punteggio = 0;
         }
@@ -127,9 +138,9 @@ namespace pellegrinoAgnati
                 bloccoCorrente.Movimento(-1, 0);
                 piazzaBlocco();
             }
-            punteggio+= grid.getNRowCancellate()*100;
-            livello = punteggio/10;
-            
+            punteggio += grid.getNRowCancellate() * 100;
+            livello = punteggio / 10;
+
         }
 
 
@@ -170,9 +181,14 @@ namespace pellegrinoAgnati
             }
             else
             {
-                bloccoCorrente = queue.GetAndUpdate();
+                bloccoCorrente = prossimoBlocco;
+                bloccoCorrente.Reset();
+                prossimoBlocco = queue.GetAndUpdate();
             }
-            
+
+
+
+
 
         }
     }

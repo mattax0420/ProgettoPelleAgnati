@@ -19,12 +19,18 @@ namespace pellegrinoAgnati
     /// </summary>
     public partial class login : Window
     {
+        public enum difficolta
+        {
+            facile, difficile
+        }
+        public difficolta difficult { get; set; }
         public string userName { get; set; }
 
 
         public login()
         {
             InitializeComponent();
+            txtUser.Focus();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -36,6 +42,11 @@ namespace pellegrinoAgnati
                 {
                     userName = txtUser.Text;
                     connessione.Connection(txtUser.Text);
+                    DialogResult = true;
+                    if (rdDifficile.IsChecked == true)
+                        difficult = difficolta.difficile;
+                    else if (rdFacile.IsChecked == true)
+                        difficult = difficolta.facile;
                     this.Close();
 
                 }
